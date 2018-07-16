@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BudgetItem } from '../../models/budget-item';
+import { FixedCost } from '../../models/fixed-cost';
+import { VariableCost } from '../../models/variable-cost';
 
 @Component({
   selector: 'app-budget-list',
@@ -7,10 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BudgetListComponent implements OnInit {
 
-  items: Object[] = [
-    {name:'item1', budgetVal:300, currSpent: 150.45},
-    {name:'item2', budgetVal:40, currSpent: 35.12},
-    {name:'item3', budgetVal:500, currSpent: 500},
+  items: BudgetItem[] = [
+    {name:'Car Payment', budgetAmount:300, itemType: {paid: false}},
+    {name:'Fast', budgetAmount:300, itemType: {amountSpent: 37.54}},
+    {name:'Rent', budgetAmount:500, itemType: {paid: true}}
   ];
 
   constructor() { }
