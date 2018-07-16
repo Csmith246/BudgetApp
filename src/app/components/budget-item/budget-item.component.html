@@ -1,11 +1,14 @@
 <div class="flexRow">
-  <p>
+  <h4>
     {{item.name}}
-  </p>
+  </h4>
   <p>
-    {{item.budgetAmount}}
+    {{item.budgetAmount | currency}}
   </p>
-  <p>
-    {{item.itemType?.paid}}
+  <p *ngIf="this.paid !== undefined">
+    {{paid}}
+  </p>
+  <p *ngIf="this.amountSpent">
+    {{amountSpent | currency}}
   </p>
 </div>
