@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+
+// ngx-bootstrap Modal
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 // Models
 import { BudgetItem } from '../../models/budget-item';
@@ -15,17 +19,20 @@ export class BudgetItemComponent implements OnInit {
 
   paid: Boolean;
   amountSpent: number;
+  modalRef: BsModalRef;
 
-  constructor() { }
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
     if(this.item.itemType instanceof FixedCost){
-      console.log(this.paid, "paid");
       this.paid = this.item.itemType.paid;
     } else{
-      console.log("amountSpent", this.amountSpent);
       this.amountSpent = this.item.itemType.amountSpent;
     }
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }

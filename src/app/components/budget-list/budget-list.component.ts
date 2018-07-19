@@ -11,9 +11,9 @@ import { VariableCost } from '../../models/variable-cost';
 export class BudgetListComponent implements OnInit {
 
   items: BudgetItem[] = [
-    {name:'Car Payment', budgetAmount:300, itemType: new FixedCost(false)},
-    {name:'Food', budgetAmount:300, itemType: new VariableCost(37.54)},
-    {name:'Rent', budgetAmount:500, itemType: new FixedCost(true)}
+    {name:'Bill 1', budgetAmount:300, itemType: new FixedCost(false)},
+    {name:'Bill 2', budgetAmount:300, itemType: new VariableCost(37.54)},
+    {name:'Bill 3', budgetAmount:500, itemType: new FixedCost(true)}
   ];
 
   constructor() { }
