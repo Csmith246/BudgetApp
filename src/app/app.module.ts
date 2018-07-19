@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 // ngx-bootstrap imports
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { AppComponent } from './app.component';
 import { BudgetItemComponent } from './components/budget-item/budget-item.component';
@@ -20,7 +21,8 @@ import { IsPaidPipe } from './pipes/is-paid.pipe';
   imports: [
     BrowserModule,
     ProgressbarModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

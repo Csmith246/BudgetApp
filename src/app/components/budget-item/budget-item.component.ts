@@ -35,4 +35,11 @@ export class BudgetItemComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
+  addToSpent(val){
+    // assert that new val isn't negative
+    console.log(val);
+    console.log(this.amountSpent);
+    this.amountSpent = this.amountSpent + parseInt(val);
+    console.log(this.amountSpent);
+  }
 }

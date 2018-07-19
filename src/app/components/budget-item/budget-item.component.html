@@ -1,5 +1,5 @@
 <!-- Fixed Cost -->
-<div *ngIf="this.paid !== undefined" class="mt-3 mb-3" (click)="openModal(fixed)">
+<div *ngIf="this.paid !== undefined" class="mt-2 mb-2 outline clickable" (click)="openModal(fixed)">
   <div class="row">
     <h4 class="col-6">
       {{item.name}}
@@ -18,7 +18,7 @@
 </div>
 
 <!-- Variable Cost -->
-<div *ngIf="this.amountSpent" class="mt-3 mb-3" (click)="openModal(variable)">
+<div *ngIf="this.amountSpent" class="mt-2 mb-2 outline clickable" (click)="openModal(variable)">
   <div class="row">
     <h4 class="col-6">
       {{item.name}}
@@ -29,7 +29,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <progressbar [max]="item.budgetAmount" class="progress-striped active" [value]="this.amountSpent" type="this.amountSpent <= item.budgetAmount ? success : danger"
+      <progressbar [max]="item.budgetAmount" class="progress-striped active" [value]="this.amountSpent" [type]="this.amountSpent <= item.budgetAmount ? 'success' : 'danger'"
         striped="true" animate="true">
       </progressbar>
     </div>
@@ -39,25 +39,30 @@
 <!-- fixed Modal -->
 <ng-template #fixed>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">{{item.name}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    This is ATHENS
+  <div class="modal-body row justify-content-center">
+    <div class="btn-group col-4">
+      <button class="btn btn-success mr-1" (click)="this.paid=true">Paid</button>
+      <button class="btn btn-danger" (click)="this.paid=false">Not Paid</button>
+    </div>
   </div>
 </ng-template>
 
 <!-- variable Modal -->
 <ng-template #variable>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">{{item.name}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    This is SPARTA
+    <label>Add new expense: <input #newExpense type="text"></label>
+    <!-- Add a date input and other things possibly -->
+    <button class="btn btn-primary" (click)="addToSpent(newExpense.value)">Add</button>
   </div>
 </ng-template>

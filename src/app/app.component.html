@@ -1,5 +1,18 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <app-budget-list class="col-8"></app-budget-list>
-  </div>
+  <tabset>
+    <tab heading="Current Month" id="tab1">
+      <div class="row justify-content-center"> <!--Refactor to a specific "Current Month" component-->
+        <app-budget-list class="col-8"></app-budget-list>
+      </div>
+    </tab>
+    <tab heading="Last Month">
+
+    </tab>
+    <tab heading="Edit Budgets">
+      
+    </tab>
+    <tab heading="Analytics">
+
+    </tab>
+  </tabset>
 </div>
