@@ -10,10 +10,18 @@ import { Income } from '../../models/income';
 export class IncomeInputterComponent implements OnInit {
 
   @Input() incomes: Income[];
+  totalIncome: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.calcTotalIncome();
+  }
+
+  calcTotalIncome(){
+    this.totalIncome = this.incomes
+    .map(income=>{return income.amount;})
+    .reduce((acc, currVal)=>{return acc+currVal;})
   }
 
 }
