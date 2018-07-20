@@ -1,12 +1,11 @@
 <div class="container">
   <tabset>
-    <tab heading="Current Month" id="tab1">
-      <div class="row justify-content-center"> <!--Refactor to a specific "Current Month" component-->
-        <app-budget-list class="col-8"></app-budget-list>
-      </div>
+    <tab heading="Current Month" id="tab1"> <!--Maybe refactor to the actual months-->
+      <app-current-month></app-current-month>
     </tab>
     <tab heading="Last Month">
-
+      <!--This should probably be a lot like the current month in terms of edit capabilities. Only difference is that it has a comprehensive summary at the top,
+      which should change if you end up editing-->
     </tab>
     <tab heading="Edit Budgets">
       

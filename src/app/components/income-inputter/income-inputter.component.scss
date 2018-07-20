@@ -1,0 +1,25 @@
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(51, 51, 51);
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.borders{
+    border: 1px solid rgb(63, 63, 63);
+    padding: 2px;
+    margin: 1px;
+    // border-radius: 7px;
+}
+
+.relativePos{
+    position: relative;
+}
+
+.rightPositioning{
+    position: absolute;
+    top:0px;
+    left:80px;
+}

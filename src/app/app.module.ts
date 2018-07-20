@@ -10,13 +10,17 @@ import { AppComponent } from './app.component';
 import { BudgetItemComponent } from './components/budget-item/budget-item.component';
 import { BudgetListComponent } from './components/budget-list/budget-list.component';
 import { IsPaidPipe } from './pipes/is-paid.pipe';
+import { CurrentMonthComponent } from './components/current-month/current-month.component';
+import { IncomeInputterComponent } from './components/income-inputter/income-inputter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BudgetItemComponent,
     BudgetListComponent,
-    IsPaidPipe
+    IsPaidPipe,
+    CurrentMonthComponent,
+    IncomeInputterComponent
   ],
   imports: [
     BrowserModule,

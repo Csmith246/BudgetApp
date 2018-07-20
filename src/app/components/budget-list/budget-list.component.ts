@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BudgetItem } from '../../models/budget-item';
-import { FixedCost } from '../../models/fixed-cost';
-import { VariableCost } from '../../models/variable-cost';
+
 
 @Component({
   selector: 'app-budget-list',
@@ -10,11 +9,7 @@ import { VariableCost } from '../../models/variable-cost';
 })
 export class BudgetListComponent implements OnInit {
 
-  items: BudgetItem[] = [
-    {name:'Bill 1', budgetAmount:300, itemType: new FixedCost(false)},
-    {name:'Bill 2', budgetAmount:300, itemType: new VariableCost(37.54)},
-    {name:'Bill 3', budgetAmount:500, itemType: new FixedCost(true)}
-  ];
+  @Input() data: BudgetItem[];
 
   constructor() { }
 

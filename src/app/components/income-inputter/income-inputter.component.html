@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-6 text-center">
+    <h5>Income</h5>
+    <button class="btn btn-sm btn-primary">Add</button>
+  </div>
+  <div class="col-6">
+    <div class="row">
+      <div class="">
+        <div *ngFor="let income of incomes">
+          <div class="borders relativePos">{{income.amount | currency}} </div>
+        </div>
+        <hr>
+        <div>TOTAL</div>
+      </div>
+      <div class="">
+        TEST
+      </div>
+    </div>
+  </div>
+</div>
