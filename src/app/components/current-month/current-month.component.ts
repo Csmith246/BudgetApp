@@ -21,7 +21,11 @@ export class CurrentMonthComponent implements OnInit {
 
   incomeItems: Income[] = [
     {amount: 1487, source: 'Paycheck'},
-    {amount: 1487, source: 'Paycheck'}
+    {amount: 1487, source: 'Paycheck'},
+    {amount: 300, source: 'Found on the ground akdkfj akdjkafjdka akdjfj fjfjf falkdjaklfjdak jdkaj;fkdja'},
+    {amount: 1487, source: 'Paycheck'},
+    {amount: 1487, source: 'Paycheck'},
+    {amount: 300, source: 'Found on the ground'}
   ];
 
   // 1.delegate to a data service to get the data for this month which should be in firebase

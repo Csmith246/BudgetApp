@@ -1,9 +1,10 @@
+<!-- Main Content -->
 <hr>
 
 <div class="row justify-content-around align-items-center">
   <div class="p-3 text-center">
     <h5>Income</h5>
-    <button class="btn btn-sm btn-primary">Add</button>
+    <button class="btn btn-sm btn-primary" (click)="openModal(incomeAdd, i)">Add</button>
   </div>
   <div class="text-right">
     <div *ngFor="let income of incomes; let i = index" class="p-1 relativePos">
@@ -12,15 +13,68 @@
         {{income.amount | currency}}</div>
       <p class="incomeSource">{{income.source}}</p>
       <div class="rightPositioning">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-        <i class="fa fa-trash pl-1" aria-hidden="true"></i>
+        <i class="fa fa-pencil clickMouse" aria-hidden="true" (click)="openModal(incomeEdit, i)"></i>
+        <i class="fa fa-trash pl-1 clickMouse" aria-hidden="true" (click)="deleteIncome(i)"></i>
       </div>
     </div>
-
     <hr>
-
     <h5>{{totalIncome | currency}}</h5>
   </div>
 </div>
 
 <hr>
+
+<!-- Income Add Modal -->
+<ng-template #incomeAdd>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Income Entry</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="row justify-content-center">
+      <!-- ADD VALIDATION LOGIC  -->
+      <label>Amount:
+        <input #amount type="text">
+      </label>
+      <label>Source:
+        <input #source type="text">
+      </label>
+    </div>
+    <div class="row justify-content-center">
+      <div class="btn-group col-4">
+        <button class="btn btn-primary mr-1" (click)="addIncome(amount.value, source.value)">Add</button>
+        <button class="btn btn-danger" (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Income Edit -->
+<ng-template #incomeEdit>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Income Entry</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row justify-content-center">
+      <!-- ADD VALIDATION LOGIC  -->
+      <label>Amount:
+        <input #amount [value]="incomes[currentSelectedIndex].amount" type="text">
+      </label>
+      <label>Source:
+        <input #source [value]="incomes[currentSelectedIndex].source" type="text">
+      </label>
+    </div>
+    <div class="row justify-content-center">
+      <div class="btn-group col-4">
+        <button class="btn btn-primary mr-1" (click)="editIncome(amount.value, source.value)">Confirm Edit</button>
+        <button class="btn btn-danger" (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
