@@ -1,9 +1,16 @@
-<div class="row justify-content-center">
-  <h1>July</h1> <!--Refactor to a specific "Current Month" component-->
+<div class="row justify-content-center mt-5 mb-5">
+  <h1>July</h1>
+  <!--Refactor to a specific "Current Month" component-->
 </div>
 <div class="row justify-content-center">
-    <app-income-inputter [incomes]="incomeItems" class="col-6"></app-income-inputter>
+  <div class="col-8 text-center">
+    Cash Flow for the Month: XXXX - XXXX = XXXX
+  </div>
 </div>
-<div class="row justify-content-center"> 
+<div class="row justify-content-center">
+  <app-income-inputter [incomes]="incomeItems" class="col-6"></app-income-inputter>
+</div>
+<h5 class="row justify-content-center mt-5">Budgets</h5>
+<div class="row justify-content-center mb-5">
   <app-budget-list [data]="budgetItems" class="col-8"></app-budget-list>
 </div>

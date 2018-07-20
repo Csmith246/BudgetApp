@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 // ngx-bootstrap imports
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
@@ -26,7 +30,10 @@ import { IncomeInputterComponent } from './components/income-inputter/income-inp
     BrowserModule,
     ProgressbarModule.forRoot(),
     ModalModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabase, 
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
