@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DatabaseService } from '../../services/database.service';
+import { DatetimeService } from '../../services/datetime.service';
+
 // Models
 import { BudgetItem } from '../../models/budget-item';
 import { FixedCost } from '../../models/fixed-cost';
@@ -32,9 +35,15 @@ export class CurrentMonthComponent implements OnInit {
   // 2. when you have the data, template it out properly in this class, for "Current Month"
   // 3. probably delgate to data service again to push updates of changed data back to Firebase
 
-  constructor() { }
+  constructor(
+    private dbService: DatabaseService,
+    private dateService: DatetimeService
+  ) { 
+    
+  }
 
   ngOnInit() {
+    console.log("CURRENTMONTH INIT");
   }
 
 }

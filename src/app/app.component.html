@@ -1,4 +1,8 @@
 <button (click)="loginWithGoogle()">Login with Google</button>
+
+<!-- Refactor above into a separate login page component -->
+
+
 <button *ngIf="user != null" (click)="logout()">Logout</button>
 <div class="container" *ngIf="user != null">
   <tabset>
@@ -8,6 +12,7 @@
     <tab heading="Last Month">
       <!--This should probably be a lot like the current month in terms of edit capabilities. Only difference is that it has a comprehensive summary at the top,
       which should change if you end up editing-->
+      <app-last-month></app-last-month>
     </tab>
     <tab heading="Edit Budgets">
       

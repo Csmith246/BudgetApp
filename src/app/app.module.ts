@@ -19,6 +19,9 @@ import { IncomeInputterComponent } from './components/income-inputter/income-inp
 
 // Services
 import { AuthService } from './services/auth.service';
+import { DatabaseService } from './services/database.service';
+import { DatetimeService } from './services/datetime.service';
+import { LastMonthComponent } from './components/last-month/last-month.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { AuthService } from './services/auth.service';
     BudgetListComponent,
     IsPaidPipe,
     CurrentMonthComponent,
-    IncomeInputterComponent
+    IncomeInputterComponent,
+    LastMonthComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,7 @@ import { AuthService } from './services/auth.service';
     AngularFireDatabaseModule, 
     AngularFireAuthModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, DatabaseService, DatetimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
