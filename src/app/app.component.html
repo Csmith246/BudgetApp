@@ -1,4 +1,6 @@
-<div class="container">
+<button (click)="loginWithGoogle()">Login with Google</button>
+<button *ngIf="user != null" (click)="logout()">Logout</button>
+<div class="container" *ngIf="user != null">
   <tabset>
     <tab heading="Current Month" id="tab1"> <!--Maybe refactor to the actual months-->
       <app-current-month></app-current-month>

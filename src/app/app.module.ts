@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
@@ -16,6 +16,9 @@ import { BudgetListComponent } from './components/budget-list/budget-list.compon
 import { IsPaidPipe } from './pipes/is-paid.pipe';
 import { CurrentMonthComponent } from './components/current-month/current-month.component';
 import { IncomeInputterComponent } from './components/income-inputter/income-inputter.component';
+
+// Services
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,10 +35,10 @@ import { IncomeInputterComponent } from './components/income-inputter/income-inp
     ModalModule.forRoot(),
     TabsModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabase, 
+    AngularFireDatabaseModule, 
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
