@@ -20,11 +20,10 @@ export class DatetimeService {
     11:"December"
   };
 
-  currentDate = new Date();
-
   constructor() { }
 
   getCurrentMonthYear(){
-    return this.monthLookup[this.currentDate.getMonth()] + ' ' + this.currentDate.getFullYear()
+    let currentDate = new Date();
+    return this.monthLookup[currentDate.getMonth()] + ' ' + currentDate.getFullYear()
   }
 }

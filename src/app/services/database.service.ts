@@ -7,7 +7,7 @@ import { DatetimeService } from './datetime.service';
 })
 export class DatabaseService {
 
-  private sessionUser;
+  private currentUser;
   private currentMonthYear;
 
   constructor(
@@ -18,7 +18,7 @@ export class DatabaseService {
   }
 
   setCurrentUser(userId){
-    this.sessionUser = userId;
+    this.currentUser = userId;
   }
 
   getUserData(userId){
@@ -28,7 +28,7 @@ export class DatabaseService {
   // queries the DB to get Budget and Income data
   getBudgetIncome(monthOffset?:number){
     if(monthOffset && (0<=monthOffset && monthOffset<12)){
-      
+
     }
   }
 }
