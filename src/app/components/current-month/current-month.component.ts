@@ -22,14 +22,7 @@ export class CurrentMonthComponent implements OnInit {
     {name:'Bill 3', budgetAmount:500, itemType: new FixedCost(true)}
   ];
 
-  incomeItems: Income[] = [
-    {amount: 1487, source: 'Paycheck'},
-    {amount: 1487, source: 'Paycheck'},
-    {amount: 300, source: 'Found on the ground akdkfj akdjkafjdka akdjfj fjfjf falkdjaklfjdak jdkaj;fkdja'},
-    {amount: 1487, source: 'Paycheck'},
-    {amount: 1487, source: 'Paycheck'},
-    {amount: 300, source: 'Found on the ground'}
-  ];
+  incomeItems: Income[] = [];
 
   // 1.delegate to a data service to get the data for this month which should be in firebase
   // 2. when you have the data, template it out properly in this class, for "Current Month"
@@ -44,6 +37,10 @@ export class CurrentMonthComponent implements OnInit {
 
   ngOnInit() {
     console.log("CURRENTMONTH INIT");
+    // set up data getters that feed the smaller components
+    this.dbService.getIncome().subscribe((income)=>{
+      this.incomeItems = income;
+    })
   }
 
 }

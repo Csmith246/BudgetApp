@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, OnChanges } from '@angular/core';
+
+// Services
+import { DatabaseService } from '../../services/database.service';
 
 // ngx-bootstrap Modal
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -7,21 +10,26 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 // Models
 import { Income } from '../../models/income';
 
+
 @Component({
   selector: 'app-income-inputter',
   templateUrl: './income-inputter.component.html',
   styleUrls: ['./income-inputter.component.scss']
 })
-export class IncomeInputterComponent implements OnInit {
+export class IncomeInputterComponent implements OnChanges {
 
   @Input() incomes: Income[];
   totalIncome: number;
   modalRef: BsModalRef;
   currentSelectedIndex: number;
 
-  constructor(private modalService: BsModalService) { }
+  constructor(
+    private modalService: BsModalService,
+    private dbService: DatabaseService
+  ) { }
 
-  ngOnInit() {
+
+  ngOnChanges(){ // evrytime "@Input:incomes" changes, then recalc total
     this.calcTotalIncome();
   }
 
@@ -38,25 +46,20 @@ export class IncomeInputterComponent implements OnInit {
     }else{
       this.totalIncome = 0;
     }
-    // console.log("TOTAL INCOME", this.totalIncome);
   }
 
   addIncome(amount: number, source: string) {
     this.modalRef.hide();
-    console.log("IN ADD", amount, source);
-    this.incomes.push({amount: amount, source: source});
-    this.calcTotalIncome(); // Refactr to life cycle method???
+    this.dbService.addIncome({amount: amount, source: source})
   }
 
-  editIncome(amount: number, source: string) {
+  editIncome(amount: number, source: string, key: string) {
     this.modalRef.hide();
-    this.incomes[this.currentSelectedIndex] = {amount: amount, source: source};
-    this.calcTotalIncome();
+    this.dbService.editIncome({amount: amount, source: source}, key);
   }
 
-  deleteIncome(index: number) {
-    this.incomes.splice(index, 1);
-    this.calcTotalIncome();
+  deleteIncome(key: string) {
+    this.dbService.deleteIncome(key);
   }
 
 }

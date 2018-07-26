@@ -28,26 +28,31 @@ export class AppComponent {
       (user) => {
         this.user = user;
         console.log("USER", user);
-        if (user!=null) {
-          let sanitizedEmail = user.email;
-          sanitizedEmail = sanitizedEmail.replace('.', ''); // need to santize for other bad chars
+        if (user != null) { // user object retrieved
+          let sanitizedEmail = user.email.replace('.', ''); // need to santize for other bad chars;
           console.log(sanitizedEmail);
           this.dbService.setCurrentUser(sanitizedEmail);
           this.topics = this.dbService.getUserData(sanitizedEmail);
           let temp = this.topics.valueChanges();
-          temp.subscribe((item) => {
-            console.log("DATABASE RETRIEVE!!!", item);
-            if (item) {
-              // pass important parts to necessary components
-            } else {
-              //let newUser = {}
-              let newMonth = {};
-              let currentMonthYear = this.dateService.getCurrentMonthYear();
-              newMonth[currentMonthYear] = { "Budgets": "none" ,  "Income": "none" };
-              //newUser[sanitizedEmail] = newMonth;
-              this.topics.set(newMonth);
-            }
-          });
+          temp
+            .subscribe((item) => {
+              console.log("DATABASE RETRIEVE!!!", item);
+              if (item) {
+                // pass important parts to necessary components
+                console.log("IN IF. USER exists and has data", item);
+                // pass data to DB service, which is gona act as a store
+                this.dbService.setUserData(item);
+              } else {
+                //let newUser = {}
+                let newEntryConfig = {};
+                let currentMonthYear = this.dateService.getCurrentMonthYear();
+                newEntryConfig[currentMonthYear] = { "Budgets": "", "Income": "" };
+                this.topics.set(newEntryConfig);
+              }
+              // Set up DB connections to Income and Budgets for that user directly--- THIS MAY NOT BE BEST PLACE. IT's gona be called more than necessary
+              this.dbService.setupIncomeAndBudgets();
+
+            });
         }
       }
     );
