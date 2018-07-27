@@ -22,56 +22,78 @@ export class DatabaseService {
   constructor(
     public db: AngularFireDatabase,
     public dateService: DatetimeService
-  ) { 
+  ) {
     this.currentMonthYear = dateService.getCurrentMonthYear();
   }
 
-  setCurrentUser(userId){
+  setCurrentUser(userId) {
     this.currentUser = userId;
   }
 
-  getUserData(userId){
+  getUserData(userId) {
     return this.db.object(userId);
   }
 
-  setUserData(data){
-    function formatIncomes(rawIncomeData: Object){
+  setUserData(data) {
+    function formatData(data: Object) { //take different entries, add keys to the objects, then put in array
       let returnArr = [];
-      for(var key in rawIncomeData){
-        if(rawIncomeData.hasOwnProperty(key)){
-          let currIncome = rawIncomeData[key];
-          currIncome['key'] = key;
-          returnArr.push(currIncome);
+      console.log("IN FORMATDATA", data)
+      for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+          let formatted = data[key];
+          formatted['key'] = key;
+          returnArr.push(formatted);
         }
       }
-      console.log(returnArr);
+      console.log("IN RETURN ARR", returnArr);
       return returnArr;
     }
     console.log("USER DATA", data);
-    let newIncomes:Income[] = formatIncomes(data["July 2018"].Income); // needs to be refactored to deal with different months
-
+    let newIncomes: Income[] = formatData(data["July 2018"].Income); // needs to be refactored to deal with different months
     this.currentIncomeData.next(newIncomes);
+
+    let newBudgets: BudgetItem[] = formatData(data["July 2018"].Budgets);
+    this.currentBudgetsData.next(newBudgets);
   }
 
-  setupIncomeAndBudgets(){
+  setupIncomeAndBudgets() {
     this.incomeDataRef = this.db.list(`${this.currentUser}/${this.currentMonthYear}/Income`);
     this.budgetsDataRef = this.db.list(`${this.currentUser}/${this.currentMonthYear}/Budgets`);
   }
 
-  getIncome(): Subject<Income[]>{
+  //Income CRUD methods
+  getIncome(): Subject<Income[]> {
     return this.currentIncomeData;
   }
 
-  addIncome(incomeData){
+  addIncome(incomeData) {
     this.incomeDataRef.push(incomeData);
     console.log("In add");
   }
 
-  editIncome(newIncomeData, key){
+  editIncome(newIncomeData, key) {
     this.incomeDataRef.update(key, newIncomeData);
   }
 
-  deleteIncome(key){
+  deleteIncome(key) {
     this.incomeDataRef.remove(key);
+  }
+
+  //Budget CRUD methods
+  getBudgets(): Subject<BudgetItem[]> {
+    return this.currentBudgetsData;
+  }
+
+  addBudget(newBudget) {
+    this.budgetsDataRef.push(newBudget);
+    console.log("In Budget ADD");
+  }
+
+  editBudget(newBudgetData, key) {
+    this.budgetsDataRef.update(key, newBudgetData);
+  }
+
+  deleteBudget(key) {
+    this.budgetsDataRef.remove(key);
   }
 }

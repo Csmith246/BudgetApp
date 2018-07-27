@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { DatabaseService } from './services/database.service';
 import { DatetimeService } from './services/datetime.service';
 import { LastMonthComponent } from './components/last-month/last-month.component';
+import { EditBudgetsComponent } from './components/edit-budgets/edit-budgets.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LastMonthComponent } from './components/last-month/last-month.component
     IsPaidPipe,
     CurrentMonthComponent,
     IncomeInputterComponent,
-    LastMonthComponent
+    LastMonthComponent,
+    EditBudgetsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,30 @@
+<div>
+  <label for="">Budget Name
+    <input type="text">
+  </label>
+  <label for="">Budgeted Amount
+    <input type="text">
+  </label>
+  <label for="">Type
+    <div>
+      <label for="">
+        <input type="radio" name="type" value="fixed">
+        <span>Fixed</span>
+      </label>
+      <label for="">
+        <input type="radio" name="type" value="variable">
+        <span>Variable</span>
+      </label>
+    </div>
+  </label>
+
+  <button>Add</button>
+</div>
+
+<div>
+  <div *ngFor="let budget of budgetItems">
+    <h5>{{budget.name}}</h5>
+    <p>{{budget.budgetAmount}}</p>
+    <p>{{budget.type}}</p>
+  </div>
+</div>

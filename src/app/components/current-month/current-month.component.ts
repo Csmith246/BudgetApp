@@ -40,7 +40,7 @@ export class CurrentMonthComponent implements OnInit {
     // set up data getters that feed the smaller components
     this.dbService.getIncome().subscribe((income)=>{
       this.incomeItems = income;
-    })
+    });
   }
 
 }
