@@ -16,11 +16,11 @@ import { Income } from '../../models/income';
 })
 export class CurrentMonthComponent implements OnInit {
 
-  budgetItems: BudgetItem[] = [
-    {name:'Bill 1', budgetAmount:300, itemType: new FixedCost(false)},
-    {name:'Bill 2', budgetAmount:300, itemType: new VariableCost(37.54)},
-    {name:'Bill 3', budgetAmount:500, itemType: new FixedCost(true)}
-  ];
+  budgetItems: BudgetItem[] = [];
+  //   {name:'Bill 1', budgetAmount:300, itemType: new FixedCost(false)},
+  //   {name:'Bill 2', budgetAmount:300, itemType: new VariableCost(37.54)},
+  //   {name:'Bill 3', budgetAmount:500, itemType: new FixedCost(true)}
+  // ];
 
   incomeItems: Income[] = [];
 
@@ -40,6 +40,11 @@ export class CurrentMonthComponent implements OnInit {
     // set up data getters that feed the smaller components
     this.dbService.getIncome().subscribe((income)=>{
       this.incomeItems = income;
+    });
+
+    this.dbService.getBudgets().subscribe((budgets)=>{
+      console.log("THIS IS BUDGETS", budgets);
+      this.budgetItems = budgets;
     });
   }
 

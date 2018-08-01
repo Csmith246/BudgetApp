@@ -48,11 +48,19 @@ export class DatabaseService {
       console.log("IN RETURN ARR", returnArr);
       return returnArr;
     }
+
+    function makeBudgetArray(data:Object[]):BudgetItem[]{ //Put the Database Budgetdata into our BudgetItem data structure
+      return data.map((item)=>{
+        return new BudgetItem(item["key"], item["name"], item["budgetAmount"], item["type"], item["additionalInfo"]);
+      });
+    }
+
     console.log("USER DATA", data);
     let newIncomes: Income[] = formatData(data["July 2018"].Income); // needs to be refactored to deal with different months
     this.currentIncomeData.next(newIncomes);
 
-    let newBudgets: BudgetItem[] = formatData(data["July 2018"].Budgets);
+
+    let newBudgets: BudgetItem[] = makeBudgetArray(formatData(data["July 2018"].Budgets));
     this.currentBudgetsData.next(newBudgets);
   }
 

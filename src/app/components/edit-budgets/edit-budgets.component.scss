@@ -1,0 +1,24 @@
+
+
+// Budget Displays
+
+.budgetDisplays{
+    border: 1px solid black;
+}
+
+.budgetDisplayTopRow > *, .budgetDisplayBottomRow > *{
+    display: inline;
+}
+
+.budgetDisplayTopRow{
+    padding: 10px;
+}
+
+.budgetDisplayBottomRow{
+    padding: 10px;
+    text-align: center;
+}
+
+#budDisplayAmt{
+    float: right;
+}
